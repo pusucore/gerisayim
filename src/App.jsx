@@ -403,8 +403,41 @@ export default function App() {
           ) : null}
         </main>
 
+        {/* ── GİRİŞ BUTONU ── */}
+        <section className="px-5 pb-4 page-enter stagger-4">
+          <a
+            href="https://dub.sh/pusulaguncel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-3 rounded-2xl font-display uppercase select-none"
+            style={{
+              display: 'flex',
+              background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 45%, #b45309 100%)',
+              boxShadow: '0 0 32px rgba(245,158,11,0.5), 0 4px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25)',
+              padding: '17px 24px',
+              fontSize: 'clamp(16px, 4.5vw, 20px)',
+              fontWeight: 700,
+              color: '#fff',
+              letterSpacing: '0.1em',
+              textDecoration: 'none',
+              borderRadius: '16px',
+              border: '1px solid rgba(255,255,255,0.15)',
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5"/>
+              <path d="M12 2c0 0-2 3.5-2 10s2 10 2 10M2 12h20" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round"/>
+              <path d="M6 5.5c2 1.5 4 2.5 6 2.5s4-1 6-2.5M6 18.5c2-1.5 4-2.5 6-2.5s4 1 6 2.5" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
+            PUSULABET GİRİŞ
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ marginLeft: 'auto' }}>
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="rgba(255,255,255,0.85)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </section>
+
         {/* ── LIVE INDICATOR ── */}
-        <section className="flex justify-center px-6 pb-3 page-enter stagger-4">
+        <section className="flex justify-center px-6 pb-3 page-enter stagger-5">
           {!finished && (
             <div className="glass-card rounded-full px-4 py-2 flex items-center gap-2.5">
               <span
