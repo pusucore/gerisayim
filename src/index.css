@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom properties ── */
+:root {
+  --gold: #f59e0b;
+  --gold-bright: #fbbf24;
+  --gold-pale: #fde68a;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --navy: #020617;
+  --navy-mid: #0f172a;
+  --white: #ffffff;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  background: var(--navy);
+  color: white;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ── Pitch lines background ── */
+.pitch-bg {
+  background-color: #020617;
+  background-image:
+    /* Center circle */
+    radial-gradient(circle at 50% 50%, transparent 18%, rgba(255,255,255,0.025) 18.5%, transparent 19%),
+    /* Center spot */
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0.6%, transparent 0.7%),
+    /* Penalty arcs */
+    radial-gradient(ellipse at 50% -10%, transparent 28%, rgba(255,255,255,0.02) 28.5%, transparent 29%),
+    radial-gradient(ellipse at 50% 110%, transparent 28%, rgba(255,255,255,0.02) 28.5%, transparent 29%),
+    /* Midfield line */
+    linear-gradient(transparent 49.6%, rgba(255,255,255,0.035) 49.6%, rgba(255,255,255,0.035) 50.4%, transparent 50.4%),
+    /* Outer border */
+    linear-gradient(transparent 4%, rgba(255,255,255,0.03) 4%, rgba(255,255,255,0.03) 4.4%, transparent 4.4%),
+    linear-gradient(transparent 95.6%, rgba(255,255,255,0.03) 95.6%, rgba(255,255,255,0.03) 96%, transparent 96%);
+}
+
+/* ── Stadium atmosphere glow ── */
+.stadium-glow {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(251,191,36,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 20% 100%, rgba(59,130,246,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 30% at 80% 100%, rgba(239,68,68,0.06) 0%, transparent 50%);
+}
+
+/* ── Glassmorphism card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.glass-card-gold {
+  background: rgba(245, 158, 11, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.5),
+    0 0 40px rgba(245,158,11,0.1),
+    inset 0 1px 0 rgba(245,158,11,0.15);
+}
+
+/* ── Shimmer text ── */
+.shimmer-text {
+  background: linear-gradient(
+    105deg,
+    var(--gold-pale) 0%,
+    var(--gold-bright) 30%,
+    #fff 50%,
+    var(--gold-bright) 70%,
+    var(--gold-pale) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Countdown number glow ── */
+.number-glow {
+  text-shadow:
+    0 0 20px rgba(251,191,36,0.8),
+    0 0 40px rgba(251,191,36,0.4),
+    0 0 80px rgba(251,191,36,0.2);
+}
+
+.number-flip {
+  animation: flipIn 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes flipIn {
+  from {
+    transform: translateY(-8px) scale(0.95);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Pulse dot ── */
+.pulse-dot {
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  50% { transform: scale(1.2); opacity: 0.9; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+
+/* ── Stadium light rays ── */
+.light-ray {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(251,191,36,0.15), transparent 40%);
+  transform-origin: top center;
+}
+
+/* ── Particle star ── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ── Trophy glow ring ── */
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* ── Page fade in ── */
+.page-enter {
+  animation: pageEnter 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Stagger children ── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ── Divider line ── */
+.gold-divider {
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  height: 1px;
+  width: 100%;
+}
+
+/* ── Logo container ── */
+.logo-glow {
+  filter: drop-shadow(0 0 12px rgba(251,191,36,0.4));
+}
+
+/* ── Celebration mode ── */
+.celebrate {
+  animation: celebrateFlash 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes celebrateFlash {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.2) hue-rotate(10deg); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
